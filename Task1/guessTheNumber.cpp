@@ -1,4 +1,5 @@
 #include<iostream>
+#include<ctime>
 using namespace std;
 
 int guessTheNumber(int currentNumber){
@@ -19,6 +20,7 @@ int guessTheNumber(int currentNumber){
 }
 int main(){
     int currentNumber = rand()%100;
+    srand(time(0));
     guessTheNumber(currentNumber);
     return 0;
 
