@@ -24,7 +24,7 @@ class TicTacToe{
         cout << " ----------------------------------------------------------------------------------"<<endl;
         cout<<"Welcome "<<O.name<<" and "<<X.name<<endl;
         cout << " ----------------------------------------------------------------------------------"<<endl;
-        cout<<"You have beein assign the value O for "<<O.name<<" and X for "<<X.name<<endl; 
+        cout<<"You have beeing assign the value O for "<<O.name<<" and X for "<<X.name<<endl; 
         cout << " ----------------------------------------------------------------------------------"<<endl;
         cout<<"Kindly enter the row and coloum number to enter your values "<<endl;
         cout << " ----------------------------------------------------------------------------------"<<endl;
@@ -71,7 +71,6 @@ class TicTacToe{
         //checking second diagonal
         if(board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] == symbol)
             return true;
-        cout<<"Hello"<<endl;
         return false;
     }
     void play(){

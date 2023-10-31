@@ -1,58 +1,74 @@
 #include<iostream>
 #include<string>
-#include<unordered_map>
+#include<map>
 using namespace std;
 
 class task{
     public:
 
-    unordered_map<int,pair<int,string>> mp;
+    map<int,pair<int,string>> mp;
     int count ;
     task(){
         count = 0;
     }
     void add(){
         string str;
-        cout<< "Kindly Enter Your Task"<<endl;
+        cout<< "----------------------------------------------- \n Kindly Enter Your Task \n-----------------------------------------------"<<endl;
+        cin.clear();
+        cin.ignore();
         getline(cin,str);
-        
-        cin >> str;
-
-        mp.insert({++count,{0,str}});
+        cout<< "----------------------------------------------- \n "<<endl;
+        mp[++count] = {0,str};
         return;
     }
 
     void changeStatus(){
+        if(mp.empty()){ 
+            cout <<"----------------------------------------------- \n Kindly add a todo to use this Section \n-----------------------------------------------"<<endl;
+            return;
+        }
         int id;
-        cout << "Kinldy Enter the id of the task"<<endl;
+        cout << "----------------------------------------------- \n Kinldy Enter the id of the task \n-----------------------------------------------"<<endl;
         cin >> id;
+        cout<< "----------------------------------------------- \n "<<endl;
         if(mp.find(id) == mp.end()){
-            cout<<"Kindly Enter correct id"<<endl;
+            cout<<"----------------------------------------------- \n Kindly Enter correct id  \n-----------------------------------------------"<<endl;
             changeStatus();
         }else{
             string status = mp[id].first == 0? "Completed":"Incompleted";
-            cout<<"Your status have been change to "<< status<<endl;
+            cout<<"----------------------------------------------- \n Your status have been change to "<< status<<"\n-----------------------------------------------"<<endl;
             mp[id].first = !mp[id].first;
         }
     }
 
-    void vewTask(){
+    void viewTask(){
+        if(mp.empty()){ 
+            cout <<"----------------------------------------------- \n Kindly add a todo to use this Section \n-----------------------------------------------"<<endl;
+            return;
+        }
+        cout<< "----------------------------------------------- \n "<<endl;
         for(auto i:mp){
             string status = i.second.first == 0? "Incompleted":"Completed";
-            cout << i.first<<"   "<<status<<"   "<<i.second.second;
+            cout << i.first<<"  |  "<<status<<"   |  "<<i.second.second << endl;
             
         }
+        cout<< "\n -----------------------------------------------"<<endl;
     }
 
     void removeTask(){
+        if(mp.empty()){ 
+            cout <<"----------------------------------------------- \n Kindly add a todo to use this Section \n-----------------------------------------------"<<endl;
+            return;
+        }
         int id;
-        cout << " Enter the id of the task you wanted to delete"<<endl;
+        cout << "----------------------------------------------- \n  Enter the id of the task you wanted to delete\n-----------------------------------------------"<<endl;
         cin >> id;
+        cout<< "----------------------------------------------- \n "<<endl;
         if(mp.find(id) == mp.end()){
-            cout<<"Please Enter the correct id 's"<<endl;
+            cout<<"----------------------------------------------- \n Please Enter the correct id 's\n-----------------------------------------------"<<endl;
             removeTask();
         }else{
-            cout<<"Succesfully Deleted";
+            cout<<"----------------------------------------------- \n Succesfully Deleted\n-----------------------------------------------";
             mp.erase(id);
         }
     }
@@ -63,13 +79,16 @@ int main(){
     start:
         bool stop = false;
         int choice;
-        cout<<"Enter the choices for"<<endl;
-        cout << "1 : View Todo's \n 2: Remove Todo \n 3: Add Todo \n 4: Change Staus \n 5: Exit"<<endl;
+        cout<< "----------------------------------------------- \n "<<endl;
+        cout<<"Enter the choices for "<<endl;
+        cout << " 1: View Todo's \n 2: Remove Todo \n 3: Add Todo \n 4: Change Status \n 5: Exit"<<endl;
+        cout<< "\n----------------------------------------------- "<<endl;
         cin  >> choice;
+        cout<< "----------------------------------------------- \n "<<endl;
         switch (choice)
         {
         case 1:
-            t.vewTask();
+            t.viewTask();
             break;
         case 2:
             t.removeTask();
@@ -81,10 +100,11 @@ int main(){
             t.changeStatus();
             break;
         case 5:
+            cout<<"----------------------------------------------- \n  Thank You! Have a Nice Day \n-----------------------------------------------"<<endl;
             stop = true;
             break;            
         default:
-            cout<<" Kindly Enter From the given Choices"<<endl;
+            cout<<"----------------------------------------------- \n  Kindly Enter From the given Choices \n-----------------------------------------------"<<endl;
             break;
         }
         if(!stop) goto start;
